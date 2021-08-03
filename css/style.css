@@ -1,0 +1,42 @@
+#shell{
+  background-color: gray;
+  height: 500px;
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 100px;
+  padding-top: 50px;
+}
+
+#screen{
+  background-color: lightblue;
+  height: 350px;
+  width: 350px;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+
+#buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  padding-right: 35px;
+
+}
+
+#left {
+  margin-right: 0;
+}
+
+#middle {
+  margin-right: 0;
+}
+
+.button {
+  height: 70px;
+  width: 70px;
+  background-color: darkblue;
+  margin-top: 30px;
+  list-style: none;
+  border-radius: 30px;
+}
