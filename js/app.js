@@ -29,6 +29,45 @@ class Tamagotchi {
     boredom.textContent = `Play: ${this.boredom}`
   }
 
+  startGame(){
+    checkAlive = window.setInterval(function(){
+      console.log(end)
+      if (this.age == 2){
+        this.gameOver()
+      }
+    }, 500)
+
+    startMove = window.setInterval(function(){
+      first.randomMove()
+      if (end == true){
+        clearInterval(startMove)
+      }
+    }, 1000)
+    startStats = window.setInterval(function(){
+      first.updateStats()
+      if (end == true){
+        clearInterval(startStats)
+      }
+    }, 1000)
+    startAge = window.setInterval(function(){
+      first.getOlder()
+      if (end == true){
+        clearInterval(startAge)
+      }
+    }, 3000)
+  }
+  feed(){
+    this.hunger = 10
+  }
+
+  lightsOff(){
+    this.sleep = 10
+  }
+
+  play(){
+    this.boredom = 10
+  }
+
   getOlder(){
     this.age++
   }
@@ -70,47 +109,52 @@ class Tamagotchi {
   moveRight(){
     let pet = document.querySelector('#pet')
     let horizontal = pet.style.left.replace(/\D/g,'')
-    if (horizontal < 300){
-      pet.style.left = (Number(horizontal) + 10) + "px"
+    if (horizontal < 280){
+      pet.style.left = (Number(horizontal) + 20) + "px"
     } else {
-      pet.style.left = (Number(horizontal) - 10) + "px"
+      pet.style.left = (Number(horizontal) - 20) + "px"
     }
-    console.log('moveRight')
+    // console.log('moveRight')
   }
   moveLeft(){
     let pet = document.querySelector('#pet')
     let horizontal = pet.style.left.replace(/\D/g,'')
-    if (horizontal > -300){
-      pet.style.left = (Number(horizontal) - 10) + "px"
+    if (horizontal > -280){
+      pet.style.left = (Number(horizontal) - 20) + "px"
     } else{
-      pet.style.left = (Number(horizontal) + 10) + "px"
+      pet.style.left = (Number(horizontal) + 20) + "px"
     }
-    console.log('moveLeft')
+    // console.log('moveLeft')
   }
   moveUp(){
     let pet = document.querySelector('#pet')
     let vertical = pet.style.bottom.replace(/\D/g,'')
-    if (vertical < 300){
-      pet.style.bottom = (Number(vertical) + 10) + "px"
+    if (vertical < 280){
+      pet.style.bottom = (Number(vertical) + 20) + "px"
     } else {
-      pet.style.bottom = (Number(vertical) - 10) + "px"
+      pet.style.bottom = (Number(vertical) - 20) + "px"
     }
-    console.log('moveUp')
+    // console.log('moveUp')
   }
   moveDown(){
     let pet = document.querySelector('#pet')
     let vertical = pet.style.bottom.replace(/\D/g,'')
-    if (vertical > -300){
-      pet.style.bottom = (Number(vertical) - 10) + "px"
+    if (vertical > -280){
+      pet.style.bottom = (Number(vertical) - 20) + "px"
     } else {
-      pet.style.bottom = (Number(vertical) + 10) + "px"
+      pet.style.bottom = (Number(vertical) + 20) + "px"
     }
-    console.log('moveDown')
+    // console.log('moveDown')
   }
   resetPosition(){
     let pet = document.querySelector('#pet')
     pet.style.bottom = 0
     pet.style.left = 0
+  }
+
+  gameOver(){
+    console.log('dead')
+    end = true
   }
 }
 
@@ -118,12 +162,16 @@ class Tamagotchi {
 //FUNCTIONS TO LOAD ON PAGE START
 requestName()
 const first = new Tamagotchi(userName)
-first.moveRight()
 first.displayName()
-first.getOlder()
-first.updateStats()
+let startMove
+let startStats
+let startAge
+let checkAlive
+let end = false
+first.startGame()
 
-window.setInterval(function(){first.randomMove()}, 1000)
+
+
 
 //WORKING MOVE RIGHT COMMAND
 // const moveRight = () => {
