@@ -29,33 +29,7 @@ class Tamagotchi {
     boredom.textContent = `Play: ${this.boredom}`
   }
 
-  startGame(){
-    checkAlive = window.setInterval(function(){
-      console.log(end)
-      if (this.age == 2){
-        this.gameOver()
-      }
-    }, 500)
 
-    startMove = window.setInterval(function(){
-      first.randomMove()
-      if (end == true){
-        clearInterval(startMove)
-      }
-    }, 1000)
-    startStats = window.setInterval(function(){
-      first.updateStats()
-      if (end == true){
-        clearInterval(startStats)
-      }
-    }, 1000)
-    startAge = window.setInterval(function(){
-      first.getOlder()
-      if (end == true){
-        clearInterval(startAge)
-      }
-    }, 3000)
-  }
   feed(){
     this.hunger = 10
   }
@@ -106,6 +80,7 @@ class Tamagotchi {
     }
   }
 
+  //below are the movement commands to be used in randomMove()
   moveRight(){
     let pet = document.querySelector('#pet')
     let horizontal = pet.style.left.replace(/\D/g,'')
@@ -152,23 +127,59 @@ class Tamagotchi {
     pet.style.left = 0
   }
 
-  gameOver(){
-    console.log('dead')
-    end = true
-  }
 }
 
+//THIS IS OUTSIDE THE CLASS
+//move every x seconds
+function startMoving(name) {
+  return window.setInterval(function(){
+    if (end == false){
+    name.randomMove()
+    console.log('moved')
+    }
+  }, 1000)
+}
+//age every x seconds
+function startAging(name) {
+  return window.setInterval(function(){
+    if (end == false){
+      name.getOlder()
+      console.log('older')
+    }
+  }, 3000)
+}
+//update stats every 1 second
+function startUpdating(name) {
+  return window.setInterval(function(){
+    if (end == false){
+      name.updateStats()
+    }
+  }, 1000)
+}
 
 //FUNCTIONS TO LOAD ON PAGE START
 requestName()
 const first = new Tamagotchi(userName)
-first.displayName()
-let startMove
-let startStats
-let startAge
-let checkAlive
 let end = false
-first.startGame()
+first.displayName()
+first.updateStats()
+let moveVariable = startMoving(first)
+let ageVariable = startAging(first)
+let updateVariable = startUpdating(first)
+
+//CHECK IF GAME IS OVER FUNCTION
+window.setInterval(function(){
+  if (first.age == 3){
+    end = true
+  }
+  if (end == true) {
+    window.clearInterval(moveVariable)
+    window.clearInterval(ageVariable)
+  }
+}, 1000)
+
+
+
 
 
 
