@@ -54,25 +54,58 @@ class Tamagotchi {
     }
   }
 
+  randomMove(){
+    let chance = Math.random()
+    if (chance <= 0.25){
+      this.moveRight()
+    } else if (chance > 0.25 && chance <= 0.5){
+      this.moveLeft()
+    } else if (chance > 0.5 && chance < 0.75){
+      this.moveUp()
+    } else if (chance > 0.75) {
+      this.moveDown()
+    }
+  }
+
   moveRight(){
     let pet = document.querySelector('#pet')
     let horizontal = pet.style.left.replace(/\D/g,'')
-    pet.style.left = (Number(horizontal) + 10) + "px"
+    if (horizontal < 300){
+      pet.style.left = (Number(horizontal) + 10) + "px"
+    } else {
+      pet.style.left = (Number(horizontal) - 10) + "px"
+    }
+    console.log('moveRight')
   }
   moveLeft(){
     let pet = document.querySelector('#pet')
     let horizontal = pet.style.left.replace(/\D/g,'')
-    pet.style.left = (Number(horizontal) - 10) + "px"
+    if (horizontal > -300){
+      pet.style.left = (Number(horizontal) - 10) + "px"
+    } else{
+      pet.style.left = (Number(horizontal) + 10) + "px"
+    }
+    console.log('moveLeft')
   }
   moveUp(){
     let pet = document.querySelector('#pet')
     let vertical = pet.style.bottom.replace(/\D/g,'')
-    pet.style.bottom = (Number(vertical) + 10) + "px"
+    if (vertical < 300){
+      pet.style.bottom = (Number(vertical) + 10) + "px"
+    } else {
+      pet.style.bottom = (Number(vertical) - 10) + "px"
+    }
+    console.log('moveUp')
   }
   moveDown(){
     let pet = document.querySelector('#pet')
     let vertical = pet.style.bottom.replace(/\D/g,'')
-    pet.style.bottom = (Number(vertical) - 10) + "px"
+    if (vertical > -300){
+      pet.style.bottom = (Number(vertical) - 10) + "px"
+    } else {
+      pet.style.bottom = (Number(vertical) + 10) + "px"
+    }
+    console.log('moveDown')
   }
   resetPosition(){
     let pet = document.querySelector('#pet')
@@ -85,9 +118,12 @@ class Tamagotchi {
 //FUNCTIONS TO LOAD ON PAGE START
 requestName()
 const first = new Tamagotchi(userName)
+first.moveRight()
 first.displayName()
 first.getOlder()
 first.updateStats()
+
+window.setInterval(function(){first.randomMove()}, 1000)
 
 //WORKING MOVE RIGHT COMMAND
 // const moveRight = () => {
