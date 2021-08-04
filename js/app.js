@@ -29,10 +29,28 @@ class Tamagotchi {
     boredom.textContent = `Play: ${this.boredom}`
   }
 
+  getOlder(){
+    this.age++
+  }
+
   getHungry(){
     let chance = Math.random()
     if (chance < 0.9){
     this.hunger -= 1
+    }
+  }
+
+  getSleepy(){
+    let chance = Math.random()
+    if (chance < 0.8){
+      this.sleep -= 1
+    }
+  }
+
+  getBored(){
+    let chance = Math.random()
+    if (chance < 0.5){
+      this.boredom -= 1
     }
   }
 
@@ -68,6 +86,7 @@ class Tamagotchi {
 requestName()
 const first = new Tamagotchi(userName)
 first.displayName()
+first.getOlder()
 first.updateStats()
 
 //WORKING MOVE RIGHT COMMAND
