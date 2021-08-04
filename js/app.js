@@ -129,13 +129,14 @@ class Tamagotchi {
 
 }
 
+
 //THIS IS OUTSIDE THE CLASS
 //move every x seconds
 function startMoving(name) {
   return window.setInterval(function(){
     if (end == false){
     name.randomMove()
-    console.log('moved')
+    // console.log('moved')
     }
   }, 1000)
 }
@@ -144,9 +145,9 @@ function startAging(name) {
   return window.setInterval(function(){
     if (end == false){
       name.getOlder()
-      console.log('older')
+      // console.log('older')
     }
-  }, 3000)
+  }, 4000)
 }
 //update stats every 1 second
 function startUpdating(name) {
@@ -156,6 +157,29 @@ function startUpdating(name) {
     }
   }, 1000)
 }
+//below - every 5 seconds, hunger, sleep, and play triggered
+function startHunger(name) {
+  return window.setInterval(function(){
+    if (end == false){
+      name.getHungry()
+    }
+  }, 5000)
+}
+function startSleepy(name) {
+  return window.setInterval(function() {
+    if (end == false){
+      name.getSleepy()
+    }
+  }, 5000)
+}
+function startBoredom(name) {
+  return window.setInterval(function() {
+    if (end == false){
+      name.getBored()
+    }
+  }, 5000)
+}
+
 
 //FUNCTIONS TO LOAD ON PAGE START
 requestName()
@@ -165,18 +189,24 @@ first.displayName()
 first.updateStats()
 let moveVariable = startMoving(first)
 let ageVariable = startAging(first)
+let hungerVariable = startHunger(first)
+let sleepVariable = startSleepy(first)
+let boredVariable = startBoredom(first)
 let updateVariable = startUpdating(first)
 
 //CHECK IF GAME IS OVER FUNCTION
 window.setInterval(function(){
-  if (first.age == 3){
+  if (first.age == 30 || first.hunger == 0 || first.boredom == 0 || first.sleep == 0){
     end = true
   }
   if (end == true) {
     window.clearInterval(moveVariable)
     window.clearInterval(ageVariable)
+    window.clearInterval(hungerVariable)
+    window.clearInterval(sleepVariable)
+    window.clearInterval(boredVariable)
   }
-}, 1000)
+}, 500)
 
 
 
