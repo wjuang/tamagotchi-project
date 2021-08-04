@@ -7,9 +7,9 @@ class Tamagotchi {
   constructor(name){
     this.name = name
     this.age = 0
-    this.hunger = 10
-    this.sleep = 10
-    this.boredom = 10
+    this.hunger = 0
+    this.sleep = 0
+    this.boredom = 0
     this.horizontalPosition = 0
     this.verticalPosition = 0
   }
@@ -31,15 +31,15 @@ class Tamagotchi {
 
 
   feed(){
-    this.hunger = 10
+    this.hunger = 0
   }
 
   lightsOff(){
-    this.sleep = 10
+    this.sleep = 0
   }
 
   play(){
-    this.boredom = 10
+    this.boredom = 0
   }
 
   getOlder(){
@@ -49,21 +49,21 @@ class Tamagotchi {
   getHungry(){
     let chance = Math.random()
     if (chance < 0.9){
-    this.hunger -= 1
+    this.hunger += 1
     }
   }
 
   getSleepy(){
     let chance = Math.random()
     if (chance < 0.8){
-      this.sleep -= 1
+      this.sleep += 1
     }
   }
 
   getBored(){
     let chance = Math.random()
     if (chance < 0.5){
-      this.boredom -= 1
+      this.boredom += 1
     }
   }
 
@@ -196,7 +196,7 @@ let updateVariable = startUpdating(first)
 
 //CHECK IF GAME IS OVER FUNCTION
 window.setInterval(function(){
-  if (first.age == 30 || first.hunger == 0 || first.boredom == 0 || first.sleep == 0){
+  if (first.age == 30 || first.hunger == 10 || first.boredom == 10 || first.sleep == 10){
     end = true
   }
   if (end == true) {
