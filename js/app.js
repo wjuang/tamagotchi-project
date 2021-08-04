@@ -18,6 +18,24 @@ class Tamagotchi {
     topName.textContent = userName
   }
 
+  updateStats(){
+    let age = document.querySelector('#age')
+    age.textContent = `Age: ${this.age}`
+    let hunger = document.querySelector('#hunger')
+    hunger.textContent = `Food: ${this.hunger}`
+    let sleep = document.querySelector('#sleep')
+    sleep.textContent = `Sleep: ${this.sleep}`
+    let boredom = document.querySelector('#boredom')
+    boredom.textContent = `Play: ${this.boredom}`
+  }
+
+  getHungry(){
+    let chance = Math.random()
+    if (chance < 0.9){
+    this.hunger -= 1
+    }
+  }
+
   moveRight(){
     let pet = document.querySelector('#pet')
     let horizontal = pet.style.left.replace(/\D/g,'')
@@ -50,6 +68,7 @@ class Tamagotchi {
 requestName()
 const first = new Tamagotchi(userName)
 first.displayName()
+first.updateStats()
 
 //WORKING MOVE RIGHT COMMAND
 // const moveRight = () => {
