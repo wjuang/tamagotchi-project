@@ -203,6 +203,8 @@ let updateVariable = startUpdating(first)
 //the interval here must be the same as the age interval
 window.setInterval(function(){
     if (first.age == 15){
+    let evolveSound = new Audio('evolveAlert.mp3')
+    evolveSound.play()
     let petHTML = document.querySelector('#pet')
     petHTML.outerHTML = '<img src="upgrade.png" id="pet">'
     grown = true
