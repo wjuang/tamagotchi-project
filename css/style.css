@@ -77,7 +77,8 @@ h1{
 #bigwin{
   position: absolute;
   height: 300px;
-  padding-top: 100px;
   opacity: 0%;
-  z-index: 99
+  z-index: 99;
+  margin-right: 25%;
+  margin-top: 5%;
 }
