@@ -147,7 +147,7 @@ function startAging(name) {
       name.getOlder()
       // console.log('older')
     }
-  }, 4000)
+  }, 1000)
 }
 //update stats every 1 second
 function startUpdating(name) {
@@ -184,6 +184,7 @@ function startBoredom(name) {
 //FUNCTIONS TO LOAD ON PAGE START
 requestName()
 const first = new Tamagotchi(userName)
+let grown = false
 let end = false
 first.displayName()
 first.updateStats()
@@ -193,7 +194,17 @@ let hungerVariable = startHunger(first)
 let sleepVariable = startSleepy(first)
 let boredVariable = startBoredom(first)
 let updateVariable = startUpdating(first)
+console.log(document.querySelector('#pet').outerHTML)
 
+//CHECK AGE FOR UPGRADE
+//the interval here must be the same as the age interval
+window.setInterval(function(){
+    if (first.age == 15){
+    let petHTML = document.querySelector('#pet')
+    petHTML.outerHTML = '<img src="upgrade.png" id="pet">'
+    grown = true
+  }
+}, 1000)
 
 //EVENT LISTENERS FOR BUTTONS
 //feed
@@ -201,6 +212,20 @@ const foodButton = document.querySelector('#left')
 foodButton.addEventListener("click", (event) =>{
   first.feed()
   first.updateStats()
+  window.clearInterval(moveVariable)
+  let petHTML = document.querySelector('#pet')
+  petHTML.outerHTML = '<img src="food.png" id="pet">'
+  console.log(document.querySelector('#pet'))
+
+  setTimeout(function() {
+    let petHTML2 = document.querySelector('#pet')
+    if (grown == true){
+      petHTML2.outerHTML = `<img src ="upgrade.png" id="pet">`
+    } else {
+      petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet">`
+    }
+    moveVariable = startMoving(first)
+  }, 1000)
 })
 //sleep
 const sleepButton = document.querySelector('#middle')
@@ -220,6 +245,20 @@ const playButton = document.querySelector('#right')
 playButton.addEventListener("click", (event) =>{
   first.play()
   first.updateStats()
+  window.clearInterval(moveVariable)
+  let petHTML = document.querySelector('#pet')
+  petHTML.outerHTML = '<img src="play.png" id="pet">'
+  console.log(document.querySelector('#pet'))
+  setTimeout(function() {
+    let petHTML2 = document.querySelector('#pet')
+    if (grown == true){
+      petHTML2.outerHTML = `<img src ="upgrade.png" id="pet">`
+      console.log(grown)
+    } else {
+      petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet">`
+    }
+    moveVariable = startMoving(first)
+  }, 1000)
 })
 
 
