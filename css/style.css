@@ -3,7 +3,7 @@ h1{
 }
 
 #shell{
-  background-color: gray;
+  background-color: #4d07b5;
   height: 500px;
   width: 500px;
   margin: 0 auto;
@@ -12,13 +12,14 @@ h1{
 }
 
 #screen{
-  background-color: lightblue;
+  background-color: #9cd8f0;
   height: 350px;
   width: 350px;
   margin: 0 auto;
   border-radius: 50px;
   position: relative;
   text-indent: 10px;
+  color: black;
 }
 
 #buttonContainer {
@@ -40,13 +41,13 @@ h1{
 .button {
   height: 70px;
   width: 70px;
-  background-color: darkblue;
+  background-color: #f2de5c;
   margin-top: 30px;
   list-style: none;
   border-radius: 30px;
   text-align: center;
   line-height: 70px;
-  color: white;
+  color: black;
 }
 
 img {

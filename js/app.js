@@ -194,7 +194,7 @@ let hungerVariable = startHunger(first)
 let sleepVariable = startSleepy(first)
 let boredVariable = startBoredom(first)
 let updateVariable = startUpdating(first)
-console.log(document.querySelector('#pet').outerHTML)
+// console.log(document.querySelector('#pet').outerHTML)
 
 //CHECK AGE FOR UPGRADE
 //the interval here must be the same as the age interval
@@ -215,9 +215,12 @@ foodButton.addEventListener("click", (event) =>{
   window.clearInterval(moveVariable)
   let petHTML = document.querySelector('#pet')
   petHTML.outerHTML = '<img src="food.png" id="pet">'
-  console.log(document.querySelector('#pet'))
-
+  let button = document.querySelector('#left')
+  //THIS IS THE PRESSED BUTTON COLOR
+  button.style.backgroundColor = '#8c8135'
+  // console.log(document.querySelector('#pet'))
   setTimeout(function() {
+    button.style.backgroundColor = '#f2de5c'
     let petHTML2 = document.querySelector('#pet')
     if (grown == true){
       petHTML2.outerHTML = `<img src ="upgrade.png" id="pet">`
@@ -233,10 +236,19 @@ sleepButton.addEventListener("click", (event) => {
   first.lightsOff()
   first.updateStats()
   let back = document.querySelector('#screen')
-  back.style.backgroundColor = 'darkblue';
+  back.style.backgroundColor = '#101845';
+  let text = document.querySelector('#screen')
+  text.style.color = 'white'
+  let button = document.querySelector('#middle')
+  //THIS IS THE PRESSED BUTTON COLOR
+  button.style.backgroundColor = '#8c8135'
   window.clearInterval(moveVariable)
   setTimeout(function() {
-    back.style.backgroundColor = 'lightblue';
+    button.style.backgroundColor = '#f2de5c'
+  }, 1000)
+  setTimeout(function() {
+    text.style.color = 'black'
+    back.style.backgroundColor = '#9cd8f0';
     moveVariable = startMoving(first)
   }, 3000)
 })
@@ -249,7 +261,11 @@ playButton.addEventListener("click", (event) =>{
   let petHTML = document.querySelector('#pet')
   petHTML.outerHTML = '<img src="play.png" id="pet">'
   console.log(document.querySelector('#pet'))
+  let button = document.querySelector('#right')
+  //THIS IS THE PRESSED BUTTON COLOR
+  button.style.backgroundColor = '#8c8135'
   setTimeout(function() {
+    button.style.backgroundColor = '#f2de5c'
     let petHTML2 = document.querySelector('#pet')
     if (grown == true){
       petHTML2.outerHTML = `<img src ="upgrade.png" id="pet">`
