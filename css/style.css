@@ -60,3 +60,8 @@ img {
   display: block;
   position: absolute;
 }
+
+#petDead {
+  height: 350px;
+  width: 350px;
+}

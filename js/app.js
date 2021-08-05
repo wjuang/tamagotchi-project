@@ -147,7 +147,7 @@ function startAging(name) {
       name.getOlder()
       // console.log('older')
     }
-  }, 1000)
+  }, 5000)
 }
 //update stats every 1 second
 function startUpdating(name) {
@@ -204,7 +204,7 @@ window.setInterval(function(){
     petHTML.outerHTML = '<img src="upgrade.png" id="pet">'
     grown = true
   }
-}, 1000)
+}, 5000)
 
 //EVENT LISTENERS FOR BUTTONS
 //feed
@@ -263,7 +263,7 @@ playButton.addEventListener("click", (event) =>{
 
 
 //CHECK IF GAME IS OVER FUNCTION
-window.setInterval(function(){
+const checkDead = window.setInterval(function(){
   if (first.age == 30 || first.hunger == 10 || first.boredom == 10 || first.sleep == 10){
     end = true
   }
@@ -273,6 +273,9 @@ window.setInterval(function(){
     window.clearInterval(hungerVariable)
     window.clearInterval(sleepVariable)
     window.clearInterval(boredVariable)
+    let petHTML = document.querySelector('#pet')
+    petHTML.outerHTML = `<img src = "death.png" id = "petDead">`
+    window.clearInterval(checkDead)
   }
 }, 500)
 
