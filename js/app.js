@@ -22,11 +22,11 @@ class Tamagotchi {
     let age = document.querySelector('#age')
     age.textContent = `Age: ${this.age}`
     let hunger = document.querySelector('#hunger')
-    hunger.textContent = `Food: ${this.hunger}`
+    hunger.textContent = `Hunger: ${this.hunger}`
     let sleep = document.querySelector('#sleep')
     sleep.textContent = `Sleep: ${this.sleep}`
     let boredom = document.querySelector('#boredom')
-    boredom.textContent = `Play: ${this.boredom}`
+    boredom.textContent = `Boredom: ${this.boredom}`
   }
 
 
@@ -193,6 +193,35 @@ let hungerVariable = startHunger(first)
 let sleepVariable = startSleepy(first)
 let boredVariable = startBoredom(first)
 let updateVariable = startUpdating(first)
+
+
+//EVENT LISTENERS FOR BUTTONS
+//feed
+const foodButton = document.querySelector('#left')
+foodButton.addEventListener("click", (event) =>{
+  first.feed()
+  first.updateStats()
+})
+//sleep
+const sleepButton = document.querySelector('#middle')
+sleepButton.addEventListener("click", (event) => {
+  first.lightsOff()
+  first.updateStats()
+  let back = document.querySelector('#screen')
+  back.style.backgroundColor = 'darkblue';
+  window.clearInterval(moveVariable)
+  setTimeout(function() {
+    back.style.backgroundColor = 'lightblue';
+    moveVariable = startMoving(first)
+  }, 3000)
+})
+//play
+const playButton = document.querySelector('#right')
+playButton.addEventListener("click", (event) =>{
+  first.play()
+  first.updateStats()
+})
+
 
 //CHECK IF GAME IS OVER FUNCTION
 window.setInterval(function(){
