@@ -1,6 +1,7 @@
 let userName = ""
 const requestName = () => {
   userName = prompt("What would you like to name your Tamagotchi?")
+
 }
 
 class Tamagotchi {
@@ -184,7 +185,9 @@ function startBoredom(name) {
 //FUNCTIONS TO LOAD ON PAGE START
 requestName()
 const first = new Tamagotchi(userName)
+//condition to transform
 let grown = false
+//condition to end game
 let end = false
 first.displayName()
 first.updateStats()
@@ -212,13 +215,14 @@ const foodButton = document.querySelector('#left')
 foodButton.addEventListener("click", (event) =>{
   first.feed()
   first.updateStats()
-  window.clearInterval(moveVariable)
   let petHTML = document.querySelector('#pet')
   petHTML.outerHTML = '<img src="food.png" id="pet">'
   let button = document.querySelector('#left')
   //THIS IS THE PRESSED BUTTON COLOR
   button.style.backgroundColor = '#8c8135'
   // console.log(document.querySelector('#pet'))
+  let sound = new Audio('buttonAlert.mp3')
+  sound.play();
   setTimeout(function() {
     button.style.backgroundColor = '#f2de5c'
     let petHTML2 = document.querySelector('#pet')
@@ -227,7 +231,6 @@ foodButton.addEventListener("click", (event) =>{
     } else {
       petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet">`
     }
-    moveVariable = startMoving(first)
   }, 1000)
 })
 //sleep
@@ -243,6 +246,8 @@ sleepButton.addEventListener("click", (event) => {
   //THIS IS THE PRESSED BUTTON COLOR
   button.style.backgroundColor = '#8c8135'
   window.clearInterval(moveVariable)
+  let sound = new Audio('buttonAlert.mp3')
+  sound.play();
   setTimeout(function() {
     button.style.backgroundColor = '#f2de5c'
   }, 1000)
@@ -250,40 +255,57 @@ sleepButton.addEventListener("click", (event) => {
     text.style.color = 'black'
     back.style.backgroundColor = '#9cd8f0';
     moveVariable = startMoving(first)
-  }, 3000)
+  }, 2000)
 })
 //play
 const playButton = document.querySelector('#right')
 playButton.addEventListener("click", (event) =>{
   first.play()
   first.updateStats()
-  window.clearInterval(moveVariable)
   let petHTML = document.querySelector('#pet')
   petHTML.outerHTML = '<img src="play.png" id="pet">'
-  console.log(document.querySelector('#pet'))
+  //console.log(document.querySelector('#pet'))
   let button = document.querySelector('#right')
   //THIS IS THE PRESSED BUTTON COLOR
   button.style.backgroundColor = '#8c8135'
+  let sound = new Audio('buttonAlert.mp3')
+  sound.play();
   setTimeout(function() {
     button.style.backgroundColor = '#f2de5c'
     let petHTML2 = document.querySelector('#pet')
     if (grown == true){
       petHTML2.outerHTML = `<img src ="upgrade.png" id="pet">`
-      console.log(grown)
     } else {
       petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet">`
     }
-    moveVariable = startMoving(first)
   }, 1000)
 })
-
 
 //CHECK IF GAME IS OVER FUNCTION
 const checkDead = window.setInterval(function(){
   if (first.age == 30 || first.hunger == 10 || first.boredom == 10 || first.sleep == 10){
     end = true
   }
-  if (end == true) {
+  if (end == true && first.age == 30) {
+    let endSound = new Audio('winAlert.mp3')
+    endSound.play();
+    let header = document.querySelector('h1')
+    header.innerHTML = `${userName} lived a good life!`
+    let endCard = document.querySelector('#bigwin')
+    endCard.style.opacity = '50%'
+    window.clearInterval(moveVariable)
+    window.clearInterval(ageVariable)
+    window.clearInterval(hungerVariable)
+    window.clearInterval(sleepVariable)
+    window.clearInterval(boredVariable)
+    let petHTML = document.querySelector('#pet')
+    petHTML.outerHTML = `<img src = "death.png" id = "petDead">`
+    window.clearInterval(checkDead)
+  } else if (end == true && first.age !== 30) {
+    let endSound = new Audio('deadAlert.mp3')
+    endSound.play();
+    let header = document.querySelector('h1')
+    header.innerHTML = `${userName} has died.`
     window.clearInterval(moveVariable)
     window.clearInterval(ageVariable)
     window.clearInterval(hungerVariable)
@@ -293,7 +315,8 @@ const checkDead = window.setInterval(function(){
     petHTML.outerHTML = `<img src = "death.png" id = "petDead">`
     window.clearInterval(checkDead)
   }
-}, 500)
+}, 1000)
+
 
 
 

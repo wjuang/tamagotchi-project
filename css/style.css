@@ -50,7 +50,7 @@ h1{
   color: black;
 }
 
-img {
+#pet {
   height: 50px;
   width: 50px;
   top: 0px;
@@ -65,4 +65,19 @@ img {
 #petDead {
   height: 350px;
   width: 350px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  display: block;
+  position: absolute;
+}
+
+#bigwin{
+  position: absolute;
+  height: 300px;
+  padding-top: 100px;
+  opacity: 0%;
+  z-index: 99
 }
