@@ -1,14 +1,17 @@
 h1{
-  text-align: center
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 54px;
 }
 
 #shell{
   background-color: #4d07b5;
-  height: 500px;
+  height: 600px;
   width: 500px;
   margin: 0 auto;
   border-radius: 100px;
   padding-top: 50px;
+  border: 20px outset #2a0462;
 }
 
 #screen{
@@ -20,6 +23,8 @@ h1{
   position: relative;
   text-indent: 10px;
   color: black;
+  border: 10px inset #4d07b5;
+  font-family: 'Roboto', sans-serif;
 }
 
 #buttonContainer {
@@ -42,12 +47,14 @@ h1{
   height: 70px;
   width: 70px;
   background-color: #f2de5c;
-  margin-top: 30px;
+  margin-top: 60px;
   list-style: none;
   border-radius: 30px;
   text-align: center;
   line-height: 70px;
   color: black;
+  font-family: 'Roboto', sans-serif;
+  border: outset 6px #473e06;
 }
 
 #pet {

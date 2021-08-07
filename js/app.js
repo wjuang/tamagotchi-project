@@ -206,7 +206,8 @@ window.setInterval(function(){
     let evolveSound = new Audio('evolveAlert.mp3')
     evolveSound.play()
     let petHTML = document.querySelector('#pet')
-    petHTML.outerHTML = '<img src="upgrade.png" id="pet">'
+    let petStyle = petHTML.style.cssText
+    petHTML.outerHTML = `<img src="upgrade.png" id="pet" style="${petStyle}">`
     grown = true
   }
 }, 8000)
@@ -218,7 +219,8 @@ foodButton.addEventListener("click", (event) =>{
   first.feed()
   first.updateStats()
   let petHTML = document.querySelector('#pet')
-  petHTML.outerHTML = '<img src="food.png" id="pet">'
+  let petStyle = petHTML.style.cssText
+  petHTML.outerHTML = `<img src="food.png" id="pet" style="${petStyle}">`
   let button = document.querySelector('#left')
   //THIS IS THE PRESSED BUTTON COLOR
   button.style.backgroundColor = '#8c8135'
@@ -228,10 +230,11 @@ foodButton.addEventListener("click", (event) =>{
   setTimeout(function() {
     button.style.backgroundColor = '#f2de5c'
     let petHTML2 = document.querySelector('#pet')
+    let petStyle = petHTML.style.cssText
     if (grown == true){
-      petHTML2.outerHTML = `<img src ="upgrade.png" id="pet">`
+      petHTML2.outerHTML = `<img src ="upgrade.png" id="pet" style="${petStyle}">`
     } else {
-      petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet">`
+      petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet" style="${petStyle}">`
     }
   }, 1000)
 })
@@ -257,7 +260,7 @@ sleepButton.addEventListener("click", (event) => {
     text.style.color = 'black'
     back.style.backgroundColor = '#9cd8f0';
     moveVariable = startMoving(first)
-  }, 2000)
+  }, 2500)
 })
 //play
 const playButton = document.querySelector('#right')
@@ -265,7 +268,9 @@ playButton.addEventListener("click", (event) =>{
   first.play()
   first.updateStats()
   let petHTML = document.querySelector('#pet')
-  petHTML.outerHTML = '<img src="play.png" id="pet">'
+  //grab csstext current position of pet
+  let petStyle = petHTML.style.cssText
+  petHTML.outerHTML = `<img src="play.png" id="pet" style="${petStyle}">`
   //console.log(document.querySelector('#pet'))
   let button = document.querySelector('#right')
   //THIS IS THE PRESSED BUTTON COLOR
@@ -275,10 +280,11 @@ playButton.addEventListener("click", (event) =>{
   setTimeout(function() {
     button.style.backgroundColor = '#f2de5c'
     let petHTML2 = document.querySelector('#pet')
+    let petStyle = petHTML.style.cssText
     if (grown == true){
-      petHTML2.outerHTML = `<img src ="upgrade.png" id="pet">`
+      petHTML2.outerHTML = `<img src ="upgrade.png" id="pet" style="${petStyle}">`
     } else {
-      petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet">`
+      petHTML2.outerHTML = `<img src="Kuchipatchi.png" id="pet" style="${petStyle}"">`
     }
   }, 1000)
 })
