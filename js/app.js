@@ -301,6 +301,8 @@ const checkDead = window.setInterval(function(){
     header.innerHTML = `${userName} lived a good life!`
     let endCard = document.querySelector('#bigwin')
     endCard.style.opacity = '50%'
+    let removeBorder = document.querySelector('#screen')
+    removeBorder.style.border = "0"
     window.clearInterval(moveVariable)
     window.clearInterval(ageVariable)
     window.clearInterval(hungerVariable)
@@ -314,6 +316,8 @@ const checkDead = window.setInterval(function(){
     endSound.play();
     let header = document.querySelector('h1')
     header.innerHTML = `${userName} has died.`
+    let removeBorder = document.querySelector('#screen')
+    removeBorder.style.border = "0"
     window.clearInterval(moveVariable)
     window.clearInterval(ageVariable)
     window.clearInterval(hungerVariable)
