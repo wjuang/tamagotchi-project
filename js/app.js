@@ -148,7 +148,7 @@ function startAging(name) {
       name.getOlder()
       // console.log('older')
     }
-  }, 8000)
+  }, 6000)
 }
 //update stats every 1 second
 function startUpdating(name) {
@@ -210,7 +210,7 @@ window.setInterval(function(){
     petHTML.outerHTML = `<img src="upgrade.png" id="pet" style="${petStyle}">`
     grown = true
   }
-}, 8000)
+}, 6000)
 
 //EVENT LISTENERS FOR BUTTONS
 //feed
